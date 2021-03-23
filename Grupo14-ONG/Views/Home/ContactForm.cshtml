@@ -1,0 +1,111 @@
+﻿@model Grupo14_ONG.ViewModels.ContactViewModel
+
+@{
+    ViewBag.Title = "Contacto";
+
+}
+
+<section class="section section-lg text-center bg-default">
+    <div class="container" style="margin-top:110px">
+        <div class="row row-50">
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-triangle decorate-color-secondary"><span class="icon-xl linearicons-phone-incoming icon-gradient-1"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="tel:#">1-800-123-1234</a></h4>
+                        <p>You can call us anytime</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-circle decorate-color-secondary-2"><span class="icon-xl linearicons-map2 icon-gradient-2"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="#">51 Francis Street, Darlinghurst NSW 2010, United States</a></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="box-icon-classic">
+                    <div class="box-icon-inner decorate-rectangle decorate-color-primary"><span class="icon-xl linearicons-paper-plane icon-gradient-3"></span></div>
+                    <div class="box-icon-caption">
+                        <h4><a href="mailto:#">info@demolink.org</a></h4>
+                        <p>Feel free to email us your questions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (IsPost)
+{<section class="section section-lg bg-gray-1 text-center " style="margin-top: 40px">
+        <br />
+        <h4 align="center">¡Su mensaje ha sido enviado!</h4>
+    </section>
+}
+else
+{
+    <div class="up">
+        <section class="section section-lg bg-gray-1 text-center ">
+
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col-md-9 col-lg-7">
+                        @using (Html.BeginForm(new { @class = "rd - form rd - mailform" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <h3>Envianos tu mensaje</h3>
+                            <br>
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="form-wrap">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-input col-12" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-wrap">
+                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-input col-12" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                            </div>
+
+                            <div class="form-wrap">
+                                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "form-label" })
+                                @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = " form-input col-12" } })
+                                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-wrap">
+                                @Html.LabelFor(model => model.Text, htmlAttributes: new { @class = "form-label" })
+                                @Html.TextAreaFor(model => model.Text, new { @class = "form-input col-12" })
+                                @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div class="col-12 col-sm-7 col-lg-5">
+                                    <input type="submit" value="Enviar" class="button button-block button-lg button-primary" />
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,39 @@
+﻿@model Grupo14_ONG.Models.ViewModels.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<br />
+@using (Html.BeginForm("Login", "User", FormMethod.Post, new { role = "form", @class = "" }))
+{
+
+    @Html.AntiForgeryToken()
+    <section class="section section-lg bg-gray-1 text-center" style="margin-top: 30px;">
+        <h2>Iniciar Sesion</h2>
+        <div class="container">
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.Email)
+            </div>
+
+            @Html.TextBoxFor(d => d.Email, new { @class = "BoxCenter" })
+
+            @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" })
+
+            <br /><br />
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.Password)
+            </div>
+            @Html.PasswordFor(d => d.Password, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.Password, "", new { @class = "text-danger" })
+
+            <br /><br />
+            <div style="text-align:center">
+                <input type="submit" class="button btn-primary" value="Entrar" />
+            </div>
+
+        </div>
+    </section>
+}

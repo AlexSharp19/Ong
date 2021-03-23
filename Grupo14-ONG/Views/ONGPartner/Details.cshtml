@@ -1,0 +1,139 @@
+﻿@model Grupo14_ONG.ViewModels.ONGPartnerViewModel
+
+@{
+    ViewBag.Title = Model.Name;
+    var first = true;
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/DetailsStyle.css" />
+</head>
+<div class="up">
+
+
+
+
+
+    <section class="section section-lg section-main-bunner section-main-bunner-filter">
+        <div class="main-bunner-img" style="background-image: url(@Model.multimediaList[0].Url); background-size: cover;"></div>
+        <div class="main-bunner-inner ">
+            <div class="container">
+                <div class="row row-50 justify-content-lg-center align-items-lg-center">
+                    <div class="col-lg-12">
+                        <div class="bunner-content-modern text-center">
+
+                            <h1 class="main-bunner-title">@Model.Name</h1>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+           
+        </div>
+
+    </section>
+
+    <section  style="margin-top : 10px;">
+        <div class="col-12" style="text-align: center; padding-top:20px">
+            <a class="btn btn-primary" href="@Model.IdMercadoPago" role="button" target="_blank">DONAR EN MERCADOPAGO</a>
+
+        </div>
+
+        <div class="container">
+
+
+            <div class="row" style="padding-top:40px">
+                
+
+
+                <div class="justify-content-lg-center align-items-lg-center col-md-6" style="padding-top: 20px">
+                    <div class="col-7">
+                        <h3 class="main-bunner-title">Descripcion</h3>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@Model.Description</p>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="box-img-animate">
+                        @foreach (var item in Model.multimediaList)
+                        {
+
+                            <div class="box-img-animate-item" data-parallax-scroll="{&quot;y&quot;: 0, &quot;x&quot;: 140,  &quot;smoothness&quot;: 50 }"><img src="@item.Url" alt=""></div>
+
+                        }
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <p>Telefono: @Html.DisplayFor(model => model.Phone)  </p>
+                    <p>Email: @Html.DisplayFor(model => model.Email) </p>
+                    <p>Dirección: @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Province.Name)</p>
+                    <p>@Model.Description</p>
+
+                </div>
+
+            </div>
+
+            
+
+            @*<div style="text-align: center;">
+
+                <p>Telefono: @Html.DisplayFor(model => model.Phone)  </p>
+                <p>Email: @Html.DisplayFor(model => model.Email) </p>
+                <p>Dirección: @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Province.Name)</p>
+
+
+                <a class="btn btn-primary" href="@Model.IdMercadoPago" role="button" target="_blank">DONAR EN MERCADOPAGO</a>
+            </div>
+            <div class="row row-50 justify-content-lg-center align-items-lg-center">
+                <div class="col-lg-12">
+                    <div class="bunner-content-modern text-center container">
+                        <div class="row">
+                            <div class="col-md-6 justify-content-lg-center align-items-lg-center">
+                                <h3 class="main-bunner-title">Descripcion</h3>
+                                <p>@Model.Description</p>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <p>Telefono: @Html.DisplayFor(model => model.Phone)  </p>
+                                <p>Email: @Html.DisplayFor(model => model.Email) </p>
+                                <p>Dirección: @Html.DisplayFor(model => model.Address), @Html.DisplayFor(model => model.City), @Html.DisplayFor(model => model.Province.Name)</p>
+                                <p>@Model.Description</p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>*@
+
+        </div>
+
+
+    </section>
+
+
+
+
+
+
+
+
+      
+
+    
+
+
+
+
+
+    <div>
+        @Html.ActionLink("Volver a la lista de partners", "Index")
+    </div>
+</div>

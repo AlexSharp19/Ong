@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html class="wide wow-animation">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:300,300i,400,500,600,700,800,900,900i%7CRoboto:400%7CRubik:100,400,700">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/fonts.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/Content/style.css")
+</head>
+
+
+
+<body >
+
+    @Html.Action("_PartialHeader", "PartialViewsMethods")
+
+
+
+
+
+    @RenderBody()
+    <hr />
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/core.min.js")
+    @Scripts.Render("~/Scripts/script.js")
+
+    @RenderSection("scripts", required: false)
+
+</body>
+@Html.Action("_PartialFooter", "PartialViewsMethods")
+</html>

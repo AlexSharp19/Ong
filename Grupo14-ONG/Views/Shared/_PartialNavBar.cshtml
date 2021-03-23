@@ -1,0 +1,78 @@
+﻿
+@{
+    string path = HttpContext.Current.Request.Url.AbsolutePath;
+   
+}
+<link rel="stylesheet" href="~/Content/NavBarAdmin.css">
+
+<div class="rd-navbar-main-element">
+    <div class="rd-navbar-nav-wrap ">
+        <!-- RD Navbar Nav-->
+        <ul class="rd-navbar-nav">
+            @if ((Grupo14_ONG_DA.ModelsEF.User)Session["User"] != null && ((Grupo14_ONG_DA.ModelsEF.User)Session["User"]).Rols.name == "Admin")
+            {
+                if (path != "/Home/Admin")
+                {
+                    <li class=" rd-nav-item styleFontNavBar">@Html.ActionLink("Administrar", "Admin", "Home")</li>
+                    <li class=" rd-nav-item styleFontNavBar">@Html.ActionLink("Cerrar Sesion", "Logout", "User")</li>
+                }
+                else
+                {
+                    if (path == "/Home/Admin")
+                    {
+                        <li  class="rd-nav-item">
+                            <div class="dropdown">
+                                <button class="dropbtn styleFontNavBar">Proyectos</button>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("Administrar Proyectos", "Index", "Project")
+                                    @Html.ActionLink("Crear Proyecto", "Create", "Project")
+                                </div>
+                            </div>
+                        </li>
+                        <li  class="rd-nav-item ">
+                            <div class="dropdown">
+                                <button class="dropbtn styleFontNavBar">Partners</button>
+                                <div class="dropdown-content">
+                                    @Html.ActionLink("Administrar Partners", "Index", "ONGPartner")
+                                    @Html.ActionLink("Agregar Partner", "Create", "ONGPartner")
+                                </div>
+                            </div>
+                        </li>
+                        <li  class="rd-nav-item">
+                            <div class="dropdown">
+                                <button class="dropbtn styleFontNavBar">Usuario</button>
+                                <div class="dropdown-content">
+
+                                    @Html.ActionLink("Ver usuarios", "Index", "User")
+                                    @Html.ActionLink("Datos Usuario", "Me", "User")
+                                    @Html.ActionLink("Nuevo Usuario", "Register", "User")
+
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="rd-nav-item styleFontNavBar ">
+                            @Html.ActionLink("Volver al Home", "Index", "Home")
+                        </li>
+
+                    }
+                }
+            }
+            else
+            {
+
+                <li  class="rd-nav-item styleFontNavBar">@Html.ActionLink("Inicio", "Index", "Home")</li>
+                <li  class="rd-nav-item styleFontNavBar">@Html.ActionLink("Proyectos", "Index", "Project")</li>
+                <li  class="rd-nav-item styleFontNavBar">@Html.ActionLink("Contacto", "ContactForm", "Home")</li>
+                <li  class="rd-nav-item styleFontNavBar">@Html.ActionLink("Partners", "Index", "ONGPartner")</li> 
+                <li  class="rd-nav-item styleFontNavBar">@Html.ActionLink("Login", "Login", "User")</li>
+
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+
+

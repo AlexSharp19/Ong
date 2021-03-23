@@ -1,0 +1,152 @@
+﻿@model Grupo14_ONG.ViewModels.AdminViewModel
+@{
+    ViewBag.Title = "Admin";
+
+}
+
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("images", Model.images)
+
+    if (Model.ListMultiMediaViewModel.Count > 0)
+    {
+        for (int i = 0; i < Model.ListMultiMediaViewModel.Count; i++)
+        {
+            @Html.HiddenFor(x => x.ListMultiMediaViewModel[i].Url)
+            @Html.HiddenFor(x => x.ListMultiMediaViewModel[i].TypeFile)
+        }
+    }
+
+    <br />
+    <section class="section section-lg bg-gray-1 text-center" style="margin-top : 100px;">
+
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-4 bg-danger">
+                @Html.Label("Mensaje bienvenida:")
+            </div>
+            <div class="col-12 col-sm-8 bg-success ">
+                @Html.TextBoxFor(model => model.WelcomeMessage, htmlAttributes: new { @class = " form-control control-label col-10" })
+            </div>
+            <div class="col-12">
+                @Html.ValidationMessageFor(model => model.WelcomeMessage, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-4 bg-danger">
+                @Html.Label("URL logo:")
+            </div>
+            <div class="col-12 col-sm-8 bg-success">
+                @Html.TextBoxFor(model => model.UrlLogo, htmlAttributes: new { @class = "form-control control-label col-10" })
+            </div>
+            <div class="col-12">
+                @Html.ValidationMessageFor(model => model.UrlLogo, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-4 bg-danger">
+                @Html.Label("Telefono:")
+            </div>
+            <div class="col-12 col-sm-8 bg-success">
+                @Html.TextBoxFor(model => model.Phone, htmlAttributes: new { @class = " form-control control-label col-10" })
+            </div>
+            <div class="col-12">
+                @Html.ValidationMessageFor(model => model.Phone, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-4 bg-danger">
+                @Html.Label("Direccion:")
+            </div>
+            <div class="col-12 col-sm-8 bg-success">
+                @Html.TextBoxFor(model => model.Adress, htmlAttributes: new { @class = "form-control control-label col-10" })
+            </div>
+            <div class="col-12">
+                @Html.ValidationMessageFor(model => model.Adress, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <br />
+
+
+        <div class="container">
+            <div class="row">
+
+                <div class="container-image-group col-12">
+                    <div class="container-data">
+                        <input type="text" class="form-control col-12 " id="string_imagen" placeholder="Inserte URL...">
+                        <br />
+
+                        <a class="btn btn-primary" id="button_add">Agregar</a>
+                        @Html.ValidationMessageFor(model => model.images, "", new { @class = "text-danger" })
+
+                        <button class="btn btn-primary" id="btn_load" type="button" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Cargando...
+                        </button>
+
+                    </div>
+                    <br />
+                    <br />
+
+                    <table id="container-images" class="table table-striped" height:"10.5rem">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <br />
+        <br />
+
+        <div>
+            @Html.HiddenFor(model => model.Id)
+            <input class="btn btn-primary" type="submit" value="Aplicar" />
+        </div>
+
+
+    </section>
+}
+
+@section Scripts {
+    <script src="~/Scripts/Project.js"></script>
+    <script>
+        $(document).ready(function () {
+            Project.init();
+            @if (Model.ListMultiMediaViewModel != null)
+            {
+                if (Model.ListMultiMediaViewModel.Count > 0)
+                {
+                      foreach (var d in Model.ListMultiMediaViewModel)
+                      {
+                         @:images.push({ Url: "@d.Url",TypeFile : "@d.TypeFile"})
+                      }
+                }
+            }
+           Project.DrawTableImages();
+
+        });
+    </script>
+}
+
+
+
+
+
+
+

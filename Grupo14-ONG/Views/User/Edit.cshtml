@@ -1,0 +1,64 @@
+﻿@model Grupo14_ONG.ViewModels.EditUserViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+
+<br />
+
+@using (Html.BeginForm("Edit", "User", FormMethod.Post, new { role = "form", @class = "" }))
+{
+    @Html.HiddenFor(d => d.Id)
+    @Html.AntiForgeryToken()
+
+    <section class="section section-lg bg-gray-1 text-center" style="margin-top: 30px;">
+        <h2>Editar Usuario</h2>
+        <div class="container">
+
+            @Html.ValidationMessage("error", new { @class = "text-danger" })
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.Name)
+            </div>
+            @Html.TextBoxFor(d => d.Name, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.Name, "", new { @class = "text-danger" })
+            <br />
+
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.LastName)
+            </div>
+            @Html.TextBoxFor(d => d.LastName, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.LastName, "", new { @class = "text-danger" })
+            <br />
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.Password)
+            </div>
+            @Html.PasswordFor(d => d.Password, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.Password, "", new { @class = "text-danger" })
+            <br />
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.ConfirmPassword)
+            </div>
+            @Html.PasswordFor(d => d.ConfirmPassword, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.ConfirmPassword, "", new { @class = "text-danger" })
+            <br />
+            <div style="text-align:center">
+                @Html.LabelFor(d => d.Email)
+            </div>
+            @Html.TextBoxFor(d => d.Email, new { @class = "BoxCenter" })
+            @Html.ValidationMessageFor(d => d.Email, "", new { @class = "text-danger" })
+            <br />
+
+            <br />
+            <div style="text-align:center;">
+                <input type="submit" class="button button-primary" value="Guardar" />
+            </div>
+            <br />
+            <div>
+                @Html.ActionLink("Volver", "Index")
+            </div>
+        </div>
+    </section>
+
+}

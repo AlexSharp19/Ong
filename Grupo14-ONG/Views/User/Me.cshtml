@@ -1,0 +1,58 @@
+﻿@model Grupo14_ONG.ViewModels.UserViewModel
+
+@{
+    ViewBag.Title = "Me";
+}
+
+<br />
+<br />
+<section class="section section-lg bg-gray-1 text-center">
+    <h2>Mi Cuenta</h2>
+    <div class="container">
+
+        <div>
+
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayName("Nombre")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Apellido")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.LastName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt>
+                    @Html.DisplayName("Activo")
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.IsActive)
+                </dd>
+
+            </dl>
+        </div>
+        <div>
+            <input onclick="document.location.href='@Url.Content("~/User/Edit/" + Model.Id)'" type="button" value="Editar" class="button button-default" />
+        </div>
+
+
+
+
+    </div>
+</section>

@@ -1,0 +1,64 @@
+﻿@using Grupo14_ONG.ViewModels
+@model List<ONGPartnerListViewModel>
+@{
+    ViewBag.Title = "Partners";
+}
+<div class="up">
+    <section class="section section-lg bg-gray-1 text-center" style="margin-top : 100px">
+
+
+        @if ((Grupo14_ONG_DA.ModelsEF.User)Session["User"] != null && ((Grupo14_ONG_DA.ModelsEF.User)Session["User"]).Rols.name == "Admin")
+        {
+            <p>
+                @Html.ActionLink("Agregar ONG", "Create")
+            </p>
+        }
+
+        <div class="up">
+            <h2>ONG Partners</h2>
+        </div>
+
+
+        <div class="row row-50">
+
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-6 col-lg-4 wow-outer">
+                    <div class="wow fadeInUp">
+                        <article class="box-causes">
+                            <div class="box-causes-img">
+                                <div class="boxImg">
+                                    <img src="@item.Image.Url" alt="@item.Image.AlterText" width="372" height="396" /><a class="button button-sm button-primary" href='@Url.Action("Details", "OngPartner", new { id = item.Id })'>Ver mas</a>
+                                </div>
+                            </div>
+                            <h4 class="font-weight-medium"><a href='@Url.Action("Details", "OngPartner", new { id = item.Id })'>@Html.DisplayFor(modelItem => item.Name)</a></h4>
+                            @if ((Grupo14_ONG_DA.ModelsEF.User)Session["User"] != null && ((Grupo14_ONG_DA.ModelsEF.User)Session["User"]).Rols.name == "Admin")
+                            {
+                                <a href='@Url.Action("Edit", "OngPartner", new { id = item.Id })' class="btn btn-default">Editar</a>
+                                if (item.IsActive)
+                                {
+                                    <p>Visible en la web</p>
+                                }
+                                else
+                                {
+                                    <p>No visible en la web</p>
+                                }
+
+                            }
+                        </article>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+
+
+
+    </section>
+
+
+</div>

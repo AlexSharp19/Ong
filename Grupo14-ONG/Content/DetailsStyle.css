@@ -1,0 +1,33 @@
+﻿slider {
+    width: 95%;
+    margin: auto;
+    overflow: hidden;
+}
+
+img {    
+    height: 100%;
+    padding: 0;
+}
+
+.slider ul {
+    display: flex;
+    padding: 0;
+    width: 100%;    
+    animation: change 10s infinite alternate;
+}
+
+.slider li {
+    width: 100%;
+    list-style: none;
+}
+
+@keyframes change {
+    0% {margin-left: 0; }
+    30% {margin-left: 0;}
+
+    35%{margin-left: -100%}
+    65% {margin-left: -100%}
+
+    70% {margin-left: -200%}
+    100% {margin-left: -200%}
+}

@@ -1,0 +1,51 @@
+﻿@using Grupo14_ONG.ViewModels
+@model List<ProjectListViewModel>
+
+
+@{
+    ViewBag.Title = "Proyectos";
+}
+<div  class="up">
+
+  
+
+        <section class="section section-lg bg-gray-1 text-center " style="margin-top : 100px">
+            @if ((Grupo14_ONG_DA.ModelsEF.User)Session["User"] != null && ((Grupo14_ONG_DA.ModelsEF.User)Session["User"]).Rols.name == "Admin")
+            {
+                <p>
+                    @Html.ActionLink("Agregar proyecto", "Create")
+                </p>
+            }
+
+        <div >
+            <h2>Proyectos</h2>
+        </div>
+
+        <div class="row row-50">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-lg-4 wow-outer">
+                    <div class="wow fadeInUp">
+                        <article class="box-causes">
+                            <div class="box-causes-img">
+                                <div class="boxImg">
+                                    <img src="@item.Image.Url" alt="@item.Image.AlterText" /><a class="button button-sm button-primary" href='@Url.Action("Details", "Project", new { id = item.ProjectId })'>Ver mas</a>
+                                </div>
+                            </div>
+                            <h4 class="font-weight-medium"><a href='@Url.Action("Details", "Project", new { id = item.ProjectId })'>@Html.DisplayFor(modelItem => item.Title)</a></h4>
+                            @if ((Grupo14_ONG_DA.ModelsEF.User)Session["User"] != null && ((Grupo14_ONG_DA.ModelsEF.User)Session["User"]).Rols.name == "Admin")
+                            {
+                                <a href='@Url.Action("Edit", "Project", new { id = item.ProjectId })' class="btn btn-default">Editar</a>
+                            }
+                        </article>
+                    </div>
+                </div>
+            }
+
+
+           
+        </div>
+
+
+        </section>
+    </div>
